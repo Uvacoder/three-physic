@@ -27,8 +27,13 @@ const sceneLoader = () => {
     const file = path.split('/')[path.split('/').length - 1]
     if(file === "physic.js") return
 
-    import.meta.env.MODE === 'development' && console.log(`${file} loaded`)
-    new modules[path].default(base)
+    import.meta.env.MODE === 'production' && console.log(`${file} loading`)
+    if(modules[path].default.prototype) {
+      new modules[path].default(base)
+    } else if(typeof modules[path].default === 'function') {
+      modules[path].default()
+    }
+    import.meta.env.MODE === 'production' && console.log(`${file} loaded`)
   }
 }
 
