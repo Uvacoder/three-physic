@@ -16,7 +16,6 @@ const modulesLoader = () => {
 }
 
 //Load Three.js scene & partials
-const scene = []
 const sceneLoader = () => {
   // Scene creation
   const base = new Base()
@@ -24,25 +23,16 @@ const sceneLoader = () => {
   
   const modules = import.meta.globEager('./scripts/scene/*/*.js', { import: 'default' })
   for (const path in modules) {
-    let module;
-
     // Disabled preload for physic.js
     if(path.split('/')[path.split('/').length - 1] === "physic.js") return
-    
-    // if(modules[path].default.prototype) {
-    //   new modules[path].default(base)
-    // } else if(typeof modules[path].default === 'function') {
-    //   modules[path].default(base)
-    // } else {
-    //   return
-    // }
+
     try {
-      return new modules[path].default(base)
+      import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
+      new modules[path].default(base)
+      return true
     } catch (e) {
       return false
     }
-    // import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
-    // scene.push(module)
   }
 }
 
