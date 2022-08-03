@@ -24,15 +24,11 @@ const sceneLoader = () => {
   const modules = import.meta.globEager('./scripts/scene/*/*.js', { import: 'default' })
   for (const path in modules) {
     // Disabled preload for physic.js
-    if(path.split('/')[path.split('/').length - 1] === "physic.js") return
+    const file = path.split('/')[path.split('/').length - 1]
+    if(file === "physic.js") return
 
-    try {
-      import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
-      new modules[path].default(base)
-      return true
-    } catch (e) {
-      return false
-    }
+    import.meta.env.MODE === 'development' && console.log(`${file} loaded`)
+    new modules[path].default(base)
   }
 }
 
