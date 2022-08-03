@@ -19,7 +19,7 @@ const modulesLoader = () => {
 const sceneLoader = () => {
   // Scene creation
   const base = new Base()
-  import.meta.env.MODE === 'production' && console.log(`init.js loaded`)
+  import.meta.env.MODE === 'development' && console.log(`init.js loaded`)
   
   const modules = import.meta.globEager('./scripts/scene/*/*.js', { import: 'default' })
   for (const path in modules) {
@@ -27,7 +27,7 @@ const sceneLoader = () => {
     const file = path.split('/')[path.split('/').length - 1]
     if(file === "physic.js") return
 
-    import.meta.env.MODE === 'production' && console.log(`${file} loading`)
+    import.meta.env.MODE === 'development' && console.log(`${file} loading`)
 
     if(modules[path].default) {
       if(modules[path].default.prototype) {
@@ -43,7 +43,7 @@ const sceneLoader = () => {
       }
     }
 
-    import.meta.env.MODE === 'production' && console.log(`${file} loaded`)
+    import.meta.env.MODE === 'development' && console.log(`${file} loaded`)
   }
 }
 
