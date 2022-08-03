@@ -44,7 +44,7 @@ export default class Base {
     this.handleResize()
     this.initViewport()
     this.render()
-    this.physic = new Physic({scene: this.scene})
+    this.physic = new Physic({ scene: this.scene })
   }
 
   render = () => {

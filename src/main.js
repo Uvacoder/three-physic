@@ -26,11 +26,10 @@ const sceneLoader = () => {
   for (const path in modules) {
     let module;
 
+    console.log(path.split('/')[path.split('/').length - 1])
+
     // Disabled preload for physic.js
     if(path.split('/')[path.split('/').length - 1] === "physic.js") return
-
-    console.log(modules[path])
-    // if(!modules[path].default) return
 
     if(modules[path].default.prototype) {
       new modules[path].default(base)
