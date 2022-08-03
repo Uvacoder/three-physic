@@ -28,9 +28,7 @@ const sceneLoader = () => {
 
     // Disabled preload for physic.js
     if(path.split('/')[path.split('/').length - 1] === "physic.js") return
-
-    console.log(modules[path])
-
+    
     // if(modules[path].default.prototype) {
     //   new modules[path].default(base)
     // } else if(typeof modules[path].default === 'function') {
@@ -38,7 +36,11 @@ const sceneLoader = () => {
     // } else {
     //   return
     // }
-    new modules[path].default(base)
+    try {
+      return new modules[path].default(base)
+    } catch (e) {
+      return false
+    }
     // import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
     // scene.push(module)
   }
