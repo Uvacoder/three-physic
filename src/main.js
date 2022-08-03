@@ -19,7 +19,7 @@ const modulesLoader = () => {
 const sceneLoader = () => {
   // Scene creation
   const base = new Base()
-  import.meta.env.MODE === 'development' && console.log(`init.js loaded`)
+  import.meta.env.MODE === 'production' && console.log(`init.js loaded`)
   
   const modules = import.meta.globEager('./scripts/scene/*/*.js', { import: 'default' })
   for (const path in modules) {

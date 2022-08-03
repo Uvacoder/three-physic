@@ -1,7 +1,7 @@
 import { Body, Sphere, Vec3 } from "cannon"
 import { Mesh, MeshLambertMaterial, IcosahedronGeometry } from "three" 
 
-export default class ExempleCube {
+export default class Icosahedron {
   constructor({ scene, physic }) {
     this.scene = scene
     this.physic = physic

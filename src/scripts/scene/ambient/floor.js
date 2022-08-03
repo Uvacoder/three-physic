@@ -12,7 +12,6 @@ export default class Floor {
     }
     this.init()
     this.initPhysic()
-    this.update()
   }
 
   init() {
