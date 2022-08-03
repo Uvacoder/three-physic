@@ -37,10 +37,4 @@ export default class Floor {
 
     this.physic.world.addBody(this.floorBody)
   }
-
-  update() {
-    window.requestAnimationFrame(() => {
-      this.update()
-    })
-  }
 }
