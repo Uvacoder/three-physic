@@ -23,7 +23,7 @@ export default class Floor {
     this.floor = new Mesh(plane, material)
     this.floor.rotation.x = Math.PI / 2
     this.floor.rotation.z = Math.PI / 4
-    this.scene.add(this.floor)
+    // this.scene.add(this.floor)
   }
 
   initPhysic() {
