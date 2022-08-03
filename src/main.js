@@ -29,7 +29,7 @@ const sceneLoader = () => {
 
 
     import.meta.env.MODE === 'production' && console.log(`${file} loading`)
-    console.log(modules[path].default)
+    console.log(modules[path])
 
     if(modules[path].default.prototype) {
       new modules[path].default(base)
