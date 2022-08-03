@@ -1,0 +1,20 @@
+.description {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: 'Raleway';
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}
