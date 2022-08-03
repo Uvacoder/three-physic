@@ -26,22 +26,22 @@ const sceneLoader = () => {
   for (const path in modules) {
     let module;
 
-    console.log(path.split('/')[path.split('/').length - 1])
-
     // Disabled preload for physic.js
     if(path.split('/')[path.split('/').length - 1] === "physic.js") return
 
-    if(modules[path].default.prototype) {
-      new modules[path].default(base)
-    } else if(typeof modules[path].default === 'function') {
-      modules[path].default(base)
-    } else {
-      return
-    }
-    import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
-    scene.push(module)
+    console.log(path.split('/')[path.split('/').length - 1])
+
+    // if(modules[path].default.prototype) {
+    //   new modules[path].default(base)
+    // } else if(typeof modules[path].default === 'function') {
+    //   modules[path].default(base)
+    // } else {
+    //   return
+    // }
+    // import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
+    // scene.push(module)
   }
 }
 
-// modulesLoader()
+modulesLoader()
 sceneLoader()
