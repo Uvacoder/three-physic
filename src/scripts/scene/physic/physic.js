@@ -30,8 +30,8 @@ export default class Physic {
       this.materials.concreteMaterial,
       this.materials.plasticMaterial,
       {
-          friction: 0.1,
-          restitution: 0.7
+          friction: 2,
+          restitution: 0.3
       }
     )
     this.world.addContactMaterial(concretePlasticContactMaterial)

@@ -5,39 +5,71 @@ export default class Icosahedron {
   constructor({ scene, physic }) {
     this.scene = scene
     this.physic = physic
+
+    this.settings = {
+      instance: 4,
+      size: 0.2,
+      position: {
+        x: 0,
+        y: 10,
+        z: 0
+      },
+      mass: 100
+    } 
+    this.objs = []
+    this.objsPhysics = []
+
     this.init()
-    this.initPhysic()
     this.update()
   }
   
   init() {
-    const material = new MeshLambertMaterial({
+    this.material = new MeshLambertMaterial({
       color: 0x9adcff,
     });
 
-    const obj = new IcosahedronGeometry(1);
-    this.ico = new Mesh(obj, material);
+    this.obj = new IcosahedronGeometry(this.settings.size);
+    
+    this.createObjects()
+  }
 
-    this.scene.add(this.ico)
+  createObjects() {
+    for(let i = 0; i < this.settings.instance; i++) {
+      const ico = new Mesh(this.obj, this.material);
+      ico.position.x = this.settings.position.x
+      ico.position.y = this.settings.position.y
+      ico.position.z = this.settings.position.z
+
+      setTimeout(() => {
+        const physic = this.initPhysic()
+        this.objs.push([
+          ico,
+          physic
+        ])
+        this.scene.add(ico)
+        this.physic.world.addBody(physic)
+      }, 2000 * i)
+    }
   }
 
   initPhysic() {
-    const sphereShape = new Sphere(1)
-    this.spherePhysic = new Body({
-      mass: 1,
-      position: new Vec3(0, 3, 0),
+    const sphereShape = new Sphere(this.settings.size)
+    const spherePhysic = new Body({
+      mass: this.settings.mass,
+      position: new Vec3(this.settings.position.x, this.settings.position.y, this.settings.position.z),
       shape: sphereShape,
       material: this.physic.materials.plasticMaterial
     })
-    this.physic.world.addBody(this.spherePhysic)
+    return spherePhysic
   }
 
   update() {
-    const position = this.spherePhysic.position
-
-    this.ico.position.x = position.x
-    this.ico.position.y = position.y
-    this.ico.position.z = position.z
+    for(let i = 0; i < this.objs.length; i++) {
+      const item = this.objs[i]
+      item[0].position.x = item[1].position.x
+      item[0].position.y = item[1].position.y
+      item[0].position.z = item[1].position.z
+    }
 
     window.requestAnimationFrame(() => {
       this.update()
