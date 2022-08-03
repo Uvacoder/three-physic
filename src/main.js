@@ -3,7 +3,7 @@ import Base from './scripts/scene/base'
 
 // Automatically load JS files in modules
 const modulesLoader = () => {
-  const modules = import.meta.globEager(`./scripts/modules/*.js`)
+  const modules = import.meta.globEager('./scripts/modules/*.js')
   for (const path in modules) {
     if(modules[path].default !== undefined) {
       if(modules[path].default.prototype) {
@@ -22,7 +22,7 @@ const sceneLoader = () => {
   const base = new Base()
   import.meta.env.MODE === 'development' && console.log(`init.js loaded`)
   
-  const modules = import.meta.globEager(`./scripts/scene/*/*.js`, { import: 'default' })
+  const modules = import.meta.globEager('./scripts/scene/*/*.js', { import: 'default' })
   for (const path in modules) {
     let module;
 
