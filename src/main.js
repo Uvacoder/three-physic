@@ -38,6 +38,7 @@ const sceneLoader = () => {
     // } else {
     //   return
     // }
+    new modules[path].default(base)
     // import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
     // scene.push(module)
   }
