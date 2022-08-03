@@ -1,4 +1,4 @@
-import { World, Material, ContactMaterial, Sphere, Body, Vec3, Plane } from 'cannon' 
+import { World, Material, ContactMaterial } from 'cannon' 
 import { Clock } from 'three'
 
 export default class Physic {
